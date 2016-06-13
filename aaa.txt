@@ -23,3 +23,7 @@ void COffScreenWnd::RGB24TO32(int iX, int iY, const BYTE* byRGB24, BYTE* byRGB32
 		}
 	}
 }
+
+
+
+sibal
