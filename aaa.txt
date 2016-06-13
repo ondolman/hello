@@ -1,0 +1,25 @@
+void COffScreenWnd::RGB24TO32(int iX, int iY, const BYTE* byRGB24, BYTE* byRGB32)
+{
+	register int dvalue		= (4 - (iX * 3) % 4) % 4;
+	register int dvalue32	= (4 - (iX * 4) % 4) % 4;
+
+	register int i, j;
+	register int r, g, b, a;
+
+	for (i = 0; i < iY; i++)
+	{
+		for (j = 0; j < iX; j++)
+		{
+			const BYTE* temp = byRGB24 + j * 3 + i * (iX * 3 + dvalue);
+
+			b = *temp++;
+			g = *temp++;
+			r = *temp++;
+			a = 0;
+
+			DWORD* pDest = (LPDWORD)(byRGB32 + j * 4 + i * (iX * 4 + dvalue32)); 
+
+			*pDest = (a << 24) + (r << 16) + (g << 8) + b;
+		}
+	}
+}
